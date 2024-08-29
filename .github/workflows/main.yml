@@ -1,0 +1,19 @@
+name: CICD using Docker
+on:
+  push:
+  jobs:
+    CICD:
+      runs_on: ubuntu_latest
+      steps:
+        - name: Checkout the code
+          uses: actions/checkout@v3
+        - name: set up java
+          uses: actions/setup-java@v3
+          with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+        - name: build with maven
+          run: mvn -N package --file pom.xml
+          
+        
